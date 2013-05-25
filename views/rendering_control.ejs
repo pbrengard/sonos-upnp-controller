@@ -1,0 +1,30 @@
+﻿<html>
+<head>
+<script src="/jquery-2.0.0.js"></script>
+</head>
+
+<body>
+
+<script>
+function SetVolume_function(elem_id, submit_url) {
+    var input_elem = document.getElementById(elem_id);
+    $.post(submit_url,
+      { 
+        InstanceID: 0,
+        Channel: 'Master',
+        DesiredVolume: input_elem.value,
+      },
+      function(data){
+        //alert("Data Loaded: " +  data);
+      }
+    );
+}
+
+</script>
+<div>
+<img src ="<%= icon %>" ALIGN="middle"><%= name %>
+</div>
+<input id="SetVolume_slider" type="range" min="0" max="100" step="1" onchange="SetVolume_function('SetVolume_slider', '/device/<%= usn %>/service/RenderingControl/SetVolume')"/>
+
+</body>
+</html>
